@@ -25,29 +25,29 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          "build/maystify.js": ["src/maystify.js"]
+          "build/script/maystify.js": ["src/script/maystify.js"]
         }
       },
       js: {
         options: {
           browserifyOptions: {
             debug: true
-          }/*,
+          },
           transform: [
             ["babelify", {
               presets: ["es2015", "react"]
-            }], require('strictify')
-          ]*/
+            }]
+          ]
         },
         files: {
-          "build/maystify.js": ["src/maystify.js"]
+          "build/script/maystify.js": ["src/script/maystify.js"]
         }
       }
     },
     copy: {
       html: {
         expand: true,
-        src: ['src/*.html', 'src/server.js'],
+        src: ['src/*.html'],
         dest: 'build/',
         flatten: true,
         filter: 'isFile'
@@ -57,6 +57,10 @@ module.exports = function(grunt) {
       css: {
         files: ['src/css/**'],
         tasks: ['sass:css']
+      },
+      html: {
+        files: ['src/*.html'],
+        tasks: ['copy:html']
       }
     }
   })
@@ -76,4 +80,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask("watch_js",  ['browserify:watch']);
   grunt.registerTask('watch_css', ['watch:css']);
+  grunt.registerTask('watch_html', ['watch:html']);
 }

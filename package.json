@@ -1,12 +1,13 @@
 {
   "name" : "maystify",
   "description" : "Maya's creative portfolio",
+  "repository": "https://github.com/maystify/website.git",
   "version": "1.0.0",
   "engines": {
     "node": ">=0.12.7"
   },
   "scripts": {
-    "start": "node ./build/server.js",
+    "start": "node ./server.js",
     "deploy": "gcloud preview app deploy app.yaml"
   },
   "author": "Maya Khodabakchian",
@@ -33,5 +34,6 @@
     "grunt-env": "0.4.1",
     "grunt-grunticon": "^2.2.2",
     "grunt-watchify": "^0.1.0"
-  }
+  },
+  "license": "Apache Version 2.0"
 }

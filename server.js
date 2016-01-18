@@ -10,7 +10,7 @@ var port = process.env['PORT'] || 8080;
 // HELPER FUNCTIONS
 //
 function path(fname) {
-  return __dirname + "/" + fname;
+  return __dirname + "/build/" + fname;
 }
 
 function staticDir( fname ) {
@@ -23,9 +23,16 @@ var app = express();
 
 app.use('/images', staticDir('images'));
 app.use('/css', staticDir('css'));
+app.use('/script', staticDir('script'));
 
-app.get('/', function(req, res) {
-  res.sendFile( path( "maystify.html" ) );
+app.get('/:fname', function(req, res){
+  var fname=req.params.fname;
+  console.log( "[maystify] GET " + fname );
+  res.sendFile(path(fname));
+});
+
+app.get('/', function(req, res){
+  res.sendFile(path("portfolio.html"));
 });
 
 // EXPOSE APP THROUGH BOTH HTTP AND HTTPS
